@@ -2,13 +2,12 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  creationTimestamp: null
   name: manager-role
 rules:
 - apiGroups:
-  - webapp.mflyyou.com
+  - apps
   resources:
-  - guestbooks
+  - deployments
   verbs:
   - create
   - delete
@@ -18,15 +17,42 @@ rules:
   - update
   - watch
 - apiGroups:
-  - webapp.mflyyou.com
+  - ""
   resources:
-  - guestbooks/finalizers
+  - events
+  verbs:
+  - create
+  - patch
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - example.com.testproject.org
+  resources:
+  - busyboxes
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - example.com.testproject.org
+  resources:
+  - busyboxes/finalizers
   verbs:
   - update
 - apiGroups:
-  - webapp.mflyyou.com
+  - example.com.testproject.org
   resources:
-  - guestbooks/status
+  - busyboxes/status
   verbs:
   - get
   - patch

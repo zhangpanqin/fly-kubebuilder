@@ -6,8 +6,8 @@ metadata:
     app.kubernetes.io/name: namespace
     app.kubernetes.io/instance: system
     app.kubernetes.io/component: manager
-    app.kubernetes.io/created-by: fly-kubebuilder
-    app.kubernetes.io/part-of: fly-kubebuilder
+    app.kubernetes.io/created-by: project-v4-with-deploy-image
+    app.kubernetes.io/part-of: project-v4-with-deploy-image
     app.kubernetes.io/managed-by: kustomize
   name: system
 ---
@@ -21,8 +21,8 @@ metadata:
     app.kubernetes.io/name: deployment
     app.kubernetes.io/instance: controller-manager
     app.kubernetes.io/component: manager
-    app.kubernetes.io/created-by: fly-kubebuilder
-    app.kubernetes.io/part-of: fly-kubebuilder
+    app.kubernetes.io/created-by: project-v4-with-deploy-image
+    app.kubernetes.io/part-of: project-v4-with-deploy-image
     app.kubernetes.io/managed-by: kustomize
 spec:
   selector:
@@ -72,6 +72,11 @@ spec:
         - --leader-elect
         image: controller:latest
         name: manager
+        env:
+        - name: BUSYBOX_IMAGE
+          value: busybox:1.28
+        - name: MEMCACHED_IMAGE
+          value: memcached:1.4.36-alpine
         securityContext:
           allowPrivilegeEscalation: false
           capabilities:

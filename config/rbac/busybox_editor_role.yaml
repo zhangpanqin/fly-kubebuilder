@@ -1,20 +1,20 @@
-# permissions for end users to edit guestbooks.
+# permissions for end users to edit busyboxes.
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   labels:
     app.kubernetes.io/name: clusterrole
-    app.kubernetes.io/instance: guestbook-editor-role
+    app.kubernetes.io/instance: busybox-editor-role
     app.kubernetes.io/component: rbac
-    app.kubernetes.io/created-by: fly-kubebuilder
-    app.kubernetes.io/part-of: fly-kubebuilder
+    app.kubernetes.io/created-by: project-v4-with-deploy-image
+    app.kubernetes.io/part-of: project-v4-with-deploy-image
     app.kubernetes.io/managed-by: kustomize
-  name: guestbook-editor-role
+  name: busybox-editor-role
 rules:
 - apiGroups:
-  - webapp.mflyyou.com
+  - example.com.testproject.org
   resources:
-  - guestbooks
+  - busyboxes
   verbs:
   - create
   - delete
@@ -24,8 +24,8 @@ rules:
   - update
   - watch
 - apiGroups:
-  - webapp.mflyyou.com
+  - example.com.testproject.org
   resources:
-  - guestbooks/status
+  - busyboxes/status
   verbs:
   - get
